@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/button.dart';
+import 'package:tugasbesar/components/square_tile.dart';
 import 'package:tugasbesar/components/text_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,13 +34,15 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //logo
-                Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
+                Image.asset('lib/images/fancypedialogo.png', height: 150,),
+                // SquareTile(imagePath: 'lib/images/fancypedialogo.png'),
+                // Icon(
+                //   Icons.login,
+                //   size: 100,
+                // ),
             
-                const SizedBox(height: 50),
-            
+                const SizedBox(height: 30),
+
                 //welcomeback message
                 Text(
                   "Welcome back, you've been missed!",
@@ -96,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
 
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
 
                 //or continue with
                 Padding(
@@ -128,12 +131,19 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
+                const SizedBox(height: 30,),
+
                 //google + apple signin buttons
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //google button
-                    Image.asset('lib/images/google.png')
+                    SquareTile(imagePath: 'lib/images/google.png',),
+
+                    const SizedBox(width: 10,),
+
                     //apple button
+                    SquareTile(imagePath: 'lib/images/apple.png',)
                   ],
                 )
 

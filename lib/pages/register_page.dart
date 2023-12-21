@@ -30,11 +30,13 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                Image.asset('lib/images/fancypedialogo.png', height: 150,),
                 //logo
-                Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
+                // Icon(
+                //   Icons.lock,
+                //   size: 100,
+                // ),
             
                 const SizedBox(height: 50),
             
