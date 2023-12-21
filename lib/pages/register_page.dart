@@ -3,7 +3,11 @@ import 'package:tugasbesar/components/button.dart';
 import 'package:tugasbesar/components/text_field.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final Function()? onTap;
+  const RegisterPage({
+    super.key, 
+    required this.onTap
+  });
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -13,6 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   //text editing controller
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
             
                 //welcomeback message
                 Text(
-                  "Welcome back, you've been missed!",
+                  "Lets create an account for you",
                   style: TextStyle(
                     color: Colors.grey[700]),
                 ),
@@ -59,10 +64,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   const SizedBox(height: 10),
 
+                  // confirm password textfield
+                MyTextField(
+                  controller: confirmPasswordTextController, 
+                  hintText: 'Confirm Password', 
+                  obscureText: true),
+
+                  const SizedBox(height: 10),
+
                 //signin button
                 MyButton(
                   onTap: (){}, 
-                  text: 'Sign In'),
+                  text: 'Sign Up'),
 
                   const SizedBox(height: 10),
                   
@@ -71,16 +84,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?', 
+                      'Already have an account?', 
                     style: TextStyle(
                       color: Colors.grey[700]
                       ),
                     ),
                     const SizedBox(width: 4,),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: widget.onTap,
                       child: const Text(
-                        'Register Now', 
+                        'Login here', 
                       style: TextStyle(
                         fontWeight: FontWeight.bold, 
                         color: Colors.blue),

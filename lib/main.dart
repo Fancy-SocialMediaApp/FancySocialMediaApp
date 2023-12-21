@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tugasbesar/auth/login_or_register.dart';
+import 'package:tugasbesar/pages/register_page.dart';
 
 import 'pages/login_pages.dart';
 
@@ -11,9 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoginOrRegister(),
     );
   }
 }
