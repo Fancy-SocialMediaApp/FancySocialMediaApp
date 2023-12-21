@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                     //google button
                     SquareTile(imagePath: 'lib/images/google.png',),
 
-                    const SizedBox(width: 10,),
+                    const SizedBox(width: 50,),
 
                     //apple button
                     SquareTile(imagePath: 'lib/images/apple.png',)
