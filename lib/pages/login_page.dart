@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/button.dart';
 import 'package:tugasbesar/components/square_tile.dart';
@@ -21,6 +22,14 @@ class _LoginPageState extends State<LoginPage> {
   //text editing controller
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  //sign user in method
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailTextController.text, 
+      password: passwordTextController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 //signin button
                 MyButton(
-                  onTap: (){}, 
+                  onTap: signIn, 
                   text: 'Sign In'),
 
                   const SizedBox(height: 10),

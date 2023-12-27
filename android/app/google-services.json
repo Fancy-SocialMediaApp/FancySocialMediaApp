@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "34126164944",
+    "project_id": "authfancy",
+    "storage_bucket": "authfancy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:34126164944:android:866b8ef4e23b40f28abfd5",
+        "android_client_info": {
+          "package_name": "com.example.tugasbesar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgjP6IPYWituSNcebfqkmeo88YjVYa1Hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
