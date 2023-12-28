@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/button.dart';
 import 'package:tugasbesar/components/square_tile.dart';
@@ -25,9 +26,37 @@ class _LoginPageState extends State<LoginPage> {
 
   //sign user in method
   void signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //show loading circle
+    showDialog(context: context, 
+    builder: (context) => const Center(
+      child: CircularProgressIndicator(),
+      )
+    );
+
+    //try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailTextController.text, 
       password: passwordTextController.text,
+    );
+
+    //pop loading circle
+    if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      //pop loading circle
+      Navigator.pop(context);
+      //display error message
+      displayMessage(e.code);
+    }
+  }
+
+  //display a dialog message
+  void displayMessage(String message){
+    showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
     );
   }
 
