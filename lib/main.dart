@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/auth/login_or_register.dart';
 import 'package:tugasbesar/pages/auth_page.dart';
+import 'package:tugasbesar/pages/home_page.dart';
 import 'package:tugasbesar/pages/register_page.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
