@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/button.dart';
 import 'package:tugasbesar/components/square_tile.dart';
@@ -172,13 +171,13 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 30,),
 
                 //google + apple signin buttons
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //google button
                     SquareTile(imagePath: 'lib/images/google.png',),
 
-                    const SizedBox(width: 50,),
+                    SizedBox(width: 50,),
 
                     //apple button
                     SquareTile(imagePath: 'lib/images/apple.png',)

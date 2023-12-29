@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage>   {
       home: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'The Wall',
             style: TextStyle(
               color: Colors.white,
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage>   {
             // sign out button
             IconButton(
               onPressed: signOut,
-              icon: Icon(Icons.logout),
+              icon: const Icon(Icons.logout),
               color: Colors.white,
             ),
           ],
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage>   {
               ),
 
               //logged in as
-              Text("Logged in as " + currentUser.email!),
+              Text("Logged in as ${currentUser.email!}"),
             ],
           ),
         ),
