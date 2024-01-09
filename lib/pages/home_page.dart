@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tugasbesar/components/drawer.dart';
 import 'package:tugasbesar/components/text_field.dart';
 import 'package:tugasbesar/pages/wall_post.dart';
 
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage>   {
         'UserEmail': currentUser.email,
         'Message': textController.text,
         'TimeStamp': Timestamp.now(),
+        'Likes': [],
       });
     }
 
@@ -49,21 +51,25 @@ class _HomePageState extends State<HomePage>   {
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
           title: const Text(
-            'The Wallsss',
+            'The WallssSs',
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
           ),
           centerTitle: true, // Teks akan diatur di tengah
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Colors.white,
           actions: [
             // sign out button
             IconButton(
               onPressed: signOut,
               icon: const Icon(Icons.logout),
-              color: Colors.white,
+              color: const Color.fromARGB(255, 0, 0, 0),
             ),
           ],
+        ),
+        drawer: MyDrawer(
+          onProfileTap: () {}, 
+          onSignOut: () {},
         ),
         body: Center(
           child: Column(
@@ -88,6 +94,8 @@ class _HomePageState extends State<HomePage>   {
                           return WallPost(
                           message: post["Message"], 
                           user: post["UserEmail"], 
+                          postId: post.id, 
+                          likes: List<String>.from(post['Likes'] ?? []), 
                           );
                         },
                       );
