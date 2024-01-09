@@ -1,8 +1,10 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/drawer.dart';
 import 'package:tugasbesar/components/text_field.dart';
+import 'package:tugasbesar/pages/profile_page.dart';
 import 'package:tugasbesar/pages/wall_post.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,6 +46,20 @@ class _HomePageState extends State<HomePage>   {
     });
   }
 
+  //navigate to profile page
+  void goToProfilePage(){
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to profile page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -68,8 +84,8 @@ class _HomePageState extends State<HomePage>   {
           ],
         ),
         drawer: MyDrawer(
-          onProfileTap: () {}, 
-          onSignOut: () {},
+          onProfileTap: goToProfilePage, 
+          onSignOut: signOut,
         ),
         body: Center(
           child: Column(

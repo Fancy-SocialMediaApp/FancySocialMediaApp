@@ -38,7 +38,7 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
             icon: Icons.person, 
             text: 'P R O F I L E',
-            onTap: (){},
+            onTap: onProfileTap,
           ),
 
           const SizedBox(height: 290,),
@@ -47,7 +47,7 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
             icon: Icons.logout, 
             text: 'L O G O U T',
-            onTap: (){},
+            onTap: onSignOut,
           ),
         ],
       ),
