@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/drawer.dart';
 import 'package:tugasbesar/components/text_field.dart';
+import 'package:tugasbesar/helper/helper_methods.dart';
 import 'package:tugasbesar/pages/profile_page.dart';
 import 'package:tugasbesar/pages/wall_post.dart';
 
@@ -67,21 +68,13 @@ class _HomePageState extends State<HomePage>   {
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
           title: const Text(
-            'The WallssSs',
+            'The Walls of FancyApp',
             style: TextStyle(
               color: Color.fromARGB(255, 0, 0, 0),
             ),
           ),
           centerTitle: true, // Teks akan diatur di tengah
           backgroundColor: Colors.white,
-          actions: [
-            // sign out button
-            IconButton(
-              onPressed: signOut,
-              icon: const Icon(Icons.logout),
-              color: const Color.fromARGB(255, 0, 0, 0),
-            ),
-          ],
         ),
         drawer: MyDrawer(
           onProfileTap: goToProfilePage, 
@@ -112,6 +105,7 @@ class _HomePageState extends State<HomePage>   {
                           user: post["UserEmail"], 
                           postId: post.id, 
                           likes: List<String>.from(post['Likes'] ?? []), 
+                          time: formatDate(post["TimeStamp"]),
                           );
                         },
                       );

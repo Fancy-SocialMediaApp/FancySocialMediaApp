@@ -15,8 +15,11 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.grey[900],
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //header
+          Column(
+            children: [
+              //header
           const DrawerHeader(
             child: Icon(
               Icons.person,
@@ -40,14 +43,17 @@ class MyDrawer extends StatelessWidget {
             text: 'P R O F I L E',
             onTap: onProfileTap,
           ),
-
-          const SizedBox(height: 290,),
+        ],
+      ),
 
           //logout list tile
-          MyListTile(
-            icon: Icons.logout, 
-            text: 'L O G O U T',
-            onTap: onSignOut,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 30.0),
+            child: MyListTile(
+              icon: Icons.logout, 
+              text: 'L O G O U T',
+              onTap: onSignOut,
+            ),
           ),
         ],
       ),
