@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,24 +60,44 @@ class _HomePageState extends State<HomePage>   {
     );
   }
 
+  //navigate to home page
+  void goToHomePage(){
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to profile page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey[300],
+    return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             'The Walls of FancyApp',
             style: TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: signOut, 
+              icon: const Icon(Icons.logout),
+            ),
+          ],
           centerTitle: true, // Teks akan diatur di tengah
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
         ),
         drawer: MyDrawer(
-          onProfileTap: goToProfilePage, 
-          onSignOut: signOut,
+          onHomeTap: goToHomePage,
+          // onProfileTap: goToProfilePage, 
+          onSignOut: signOut, 
         ),
         body: Center(
           child: Column(
@@ -145,8 +164,8 @@ class _HomePageState extends State<HomePage>   {
               ),
 
               //logged in as
-              Text("Logged in as : " + currentUser.email!,
-              style: TextStyle(color: Colors.grey),
+              Text("Logged in as : ${currentUser.email!}",
+              style: const TextStyle(color: Colors.grey),
               ),
 
               const SizedBox(
@@ -155,7 +174,6 @@ class _HomePageState extends State<HomePage>   {
             ],
           ),
         ),
-      ),
     );
   }
 }

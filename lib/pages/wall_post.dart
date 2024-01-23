@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/comment.dart';
 import 'package:tugasbesar/components/comment_button.dart';
+import 'package:tugasbesar/components/delete_button.dart';
 import 'package:tugasbesar/components/like_button.dart';
 import 'package:tugasbesar/helper/helper_methods.dart';
 
@@ -83,10 +84,10 @@ class _WallPostState extends State<WallPost> {
     showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text("Add Comment"),
+      title: const Text("Add Comment"),
       content: TextField(
         controller: _commentTextController,
-        decoration: InputDecoration(hintText: "Write a comment here..."),
+        decoration: const InputDecoration(hintText: "Write a comment here..."),
         
       ),
       actions: [
@@ -100,7 +101,7 @@ class _WallPostState extends State<WallPost> {
                 //clear controller
                 _commentTextController.clear();
               }, 
-              child: Text('Cancel', style: TextStyle(color: Colors.grey[900]),
+              child: Text('Cancel',
               ),
             ),
 
@@ -117,7 +118,7 @@ class _WallPostState extends State<WallPost> {
                 //clear controller
                 _commentTextController.clear();
               },
-              child: Text('Post', style: TextStyle(color: Colors.grey[900]),
+              child: Text('Post',
               ),
             ),
       ],
@@ -125,46 +126,110 @@ class _WallPostState extends State<WallPost> {
 
    );
   }
+
+  //delete a post
+  void deletePost(){
+    //show dialog box to ask confirmation before delete
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Delete Post"),
+        content: const Text("Are you sure want to delete this post?"),
+        actions: [
+          
+          //CANCEL BUTTON
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel"),),
+
+          //DELETE BUTTON
+          TextButton(onPressed: () async{
+            //delete the comment from firestore first 
+            //(if u only delete the post, the comment will still be stored in firebase)
+            final commentDocs = await FirebaseFirestore.instance
+            .collection("User Post")
+            .doc(widget.postId)
+            .collection("Comments")
+            .get();
+
+            for (var doc in commentDocs.docs){
+              await FirebaseFirestore.instance
+              .collection("User Post")
+              .doc(widget.postId)
+              .collection("Comments")
+              .doc(doc.id)
+              .delete();
+            }
+
+            //then delete the post
+            FirebaseFirestore.instance
+            .collection("User Post")
+            .doc(widget.postId)
+            .delete()
+            .then((value) => print("post deleted"))
+            .catchError(
+              (error) => print("failed to delete the post :$error"));
+
+              //dismiss the dialog
+              Navigator.pop(context);
+
+          }, 
+          child: const Text("Delete"),)
+        ],
+      ),
+    );
+  }
+    
   
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(8),
       ),
-      margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-      padding: EdgeInsets.all(25),
+      margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
+      padding: const EdgeInsets.all(25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start, // Atur poros lintang menjadi start
         children: [
           
           const SizedBox(width: 20), // Tambahkan jarak horizontal antara profil dan teks
           // wall post
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start, // Atur poros lintang menjadi start
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+              //group of text (message + user email)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // Atur poros lintang menjadi start
+                children: [
+                  
+                  //message
+                  Text(widget.message),
               
-              //message
-              Text(widget.message),
+                  const SizedBox(height: 5),
+              
+                  //user
+                  Row(
+                  children: [
+                    Text(widget.user, style: TextStyle(color: Colors.grey[400]),),
+                    Text(" • ", style: TextStyle(color: Colors.grey[400]),),
+                    Text(widget.time, style: TextStyle(color: Colors.grey[400]),),
+                  ],  
+                ),
+              
+                  const SizedBox(height: 20),
+              
+                ],
+              ),
 
-              const SizedBox(height: 5),
-
-              //user
-              Row(
-              children: [
-                Text(widget.user, style: TextStyle(color: Colors.grey[400]),),
-                Text(" • ", style: TextStyle(color: Colors.grey[400]),),
-                Text(widget.time, style: TextStyle(color: Colors.grey[400]),),
-              ],  
-            ),
-
-              const SizedBox(height: 20),
-
+              //delete button
+              if (widget.user == currentUser.email)
+              DeleteButton(onTap: deletePost),
             ],
           ),
 
-          SizedBox(width: 20,),
+          const SizedBox(width: 20,),
 
           //buttons
           Row(
@@ -186,7 +251,7 @@ class _WallPostState extends State<WallPost> {
                   // Like Count
                   Text(
                     widget.likes.length.toString(),
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
@@ -203,7 +268,7 @@ class _WallPostState extends State<WallPost> {
                   const SizedBox(height: 5,),
                   
                   // COMMENT Count
-                  Text(
+                  const Text(
                     '0',
                     style: TextStyle(color: Colors.grey),
                   ),
