@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tugasbesar/components/my_list_tile.dart';
 
 class MyDrawer extends StatelessWidget {
-  // final void Function()? onProfileTap;
+  final void Function()? onProfileTap;
   final void Function()? onHomeTap;
   final void Function()? onSignOut;
   const MyDrawer({
     super.key, 
-    // required this.onProfileTap, 
+    required this.onProfileTap, 
     required this.onHomeTap, 
     required this.onSignOut
   });
@@ -39,12 +39,12 @@ class MyDrawer extends StatelessWidget {
             onTap: onHomeTap,
           ),
 
-          //profile list tile
-          // MyListTile(
-          //   icon: Icons.person, 
-          //   text: 'P R O F I L E',
-          //   onTap: onProfileTap,
-          // ),
+          // profile list tile
+          MyListTile(
+            icon: Icons.person, 
+            text: 'P R O F I L E',
+            onTap: onProfileTap,
+          ),
         ],
       ),
 

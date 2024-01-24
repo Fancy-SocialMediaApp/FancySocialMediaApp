@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage>   {
         ),
         drawer: MyDrawer(
           onHomeTap: goToHomePage,
-          // onProfileTap: goToProfilePage, 
+          onProfileTap: goToProfilePage, 
           onSignOut: signOut, 
         ),
         body: Center(
@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage>   {
                   .collection("User Post")
                   .orderBy(
                     "TimeStamp",
-                    descending: false,
+                    descending: true,
                   )
                   .snapshots(),
                   builder: (context, snapshot){

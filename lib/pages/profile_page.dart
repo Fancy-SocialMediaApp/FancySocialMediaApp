@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       drawer: MyDrawer(
           onHomeTap: goToHomePage,
-          // onProfileTap: goToProfilePage,
+          onProfileTap: goToProfilePage,
           onSignOut: signOut,
         ),
       body: StreamBuilder<DocumentSnapshot>(
@@ -168,14 +168,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(height: 50,),
 
                 //user post
-                Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: Text(
-                    'My Post',
-                    style: TextStyle(color: Colors.grey[600]
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 25.0),
+                //   child: Text(
+                //     'My Post',
+                //     style: TextStyle(color: Colors.grey[600]
+                //     ),
+                //   ),
+                // ),
 
               ],
             );
