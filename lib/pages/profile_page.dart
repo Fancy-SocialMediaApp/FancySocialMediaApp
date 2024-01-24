@@ -96,14 +96,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Profile Page",
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Theme.of(context).colorScheme.tertiary,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         // leading: IconButton(
         //   icon: Icon(Icons.arrow_back),
         //   color: Colors.black, // Adjust the color as needed
