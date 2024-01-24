@@ -110,11 +110,11 @@ class _ProfilePageState extends State<ProfilePage> {
         //   onPressed: signOut,
         // ),
       ),
-      drawer: MyDrawer(
-          onHomeTap: goToHomePage,
-          onProfileTap: goToProfilePage,
-          onSignOut: signOut,
-        ),
+      // drawer: MyDrawer(
+      //     onHomeTap: goToHomePage,
+      //     onProfileTap: goToProfilePage,
+      //     onSignOut: signOut,
+      //   ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),
         builder: (context, snapshot){
