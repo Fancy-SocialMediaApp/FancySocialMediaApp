@@ -8,3 +8,12 @@ Flutter Project : Fancy Mini Social Media App
    ```
    git clone [repository]
    ```
+2. Get depedencies
+   ```
+   flutter pub get
+   ```
+3. Create your own firebase on link below
+   ```
+   https://firebase.google.com/docs/auth/flutter/start
+   ```
+4. Adjust and run 💪
